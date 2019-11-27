@@ -70,7 +70,7 @@ fill(255)
     ellipse(width/2, height/2, volume*4, volume*2);
 pop();
 
-var logo = image(tg1Img, width/2, height/2, tg1Img.width/10, tg1Img.height/10);
+var logo = image(tg1Img, width/2, height/2, tg1Img.width/(width*height)*100000, tg1Img.height/(width*height) * 100000);
 
 fill(0, 0, 0, opacity);
 rect(0, 0, width, height);
