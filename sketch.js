@@ -28,6 +28,8 @@ var switchSpento;
 var switchAcceso;
 var opacity = 255;
 
+var imgOpacity = 255;
+
 function draw() {
 
 
@@ -41,7 +43,15 @@ if(bumperAudio.isPlaying() == true) {
 opacity = 0;
 background(23, 23, 23);
 
+imgOpacity = 0;
+
 }
+
+else if (bumperAudio.isPlaying() == false) {
+  imgOpacity = 255;
+}
+
+
 
 
 // Static noise
@@ -85,17 +95,25 @@ sx = 9/10 * width
 sy = 9/10 * height
 
 switchAcceso = image(switchAccesoImg, sx, sy, switchAccesoImg.width/1000000*(width*height), switchAccesoImg.height/1000000*(width*height));
+push();
+tint(255, imgOpacity);
 switchSpento = image(switchSpentoImg, sx, sy, switchSpentoImg.width/1000000*(width*height), switchSpentoImg.height/1000000*(width*height));
+pop();
   }
 
   function mouseClicked() {
 if (bumperAudio.isPlaying() == false) {
-  if (mouseX > sx && mouseX < sx + switchAccesoImg.width/1000000*(width*height)
-    && mouseY > sy && mouseY < sy + switchAccesoImg.height/1000000*(width*height)) {
+  if (mouseX > sx && mouseX < sx + switchSpentoImg.width/1000000*(width*height)
+    && mouseY > sy && mouseY < sy + switchSpentoImg.height/1000000*(width*height))
+    {
 
     bumperAudio.play();
+
+
+
 }
 }
+
   }
 
 // To make the canvas responsive
