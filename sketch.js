@@ -40,10 +40,9 @@ background(23, 23, 23);
 
 }
 
-switchAcceso = image(switchAccesoImg, 9/10 * width, 9/10 * height, switchAccesoImg.width, switchAccesoImg.height);
-switchSpento = image(switchSpentoImg, 9/10 * width, 9/10 * height, switchSpentoImg.width, switchSpentoImg.height);
+
 // Static noise
-for(a = 0; a < volume; a++) {
+for(a = 0; a < volume*3; a++) {
 push();
 noStroke();
 fill(volume*2);
@@ -53,7 +52,7 @@ pop();
 
 }
 
-for(b = 0; b < volume; b++) {
+for(b = 0; b < volume*3; b++) {
 push();
 noStroke();
 fill(volume);
@@ -63,24 +62,26 @@ pop();
 }
 
 
-
+for(e = 0; e < 7; e += 0.17) {
 push();
-noStroke();
-fill(255)
-    ellipse(width/2, height/2, volume*4, volume*2);
+stroke(255);
+noFill();
+    ellipse(width/2, height/2, e*  volume,e* volume/2);
 pop();
+}
 
-var logo = image(tg1Img, width/2, height/2, tg1Img.width/(width*height)*100000, tg1Img.height/(width*height) * 100000);
+var logo = image(tg1Img, width/2, height/2, tg1Img.width/50*(width*height) / 100000, tg1Img.height/50*(width*height) / 100000);
 
 fill(0, 0, 0, opacity);
 rect(0, 0, width, height);
 
-switchAcceso = image(switchAccesoImg, 9/10 * width, 9/10 * height, switchAccesoImg.width, switchAccesoImg.height);
-switchSpento = image(switchSpentoImg, 9/10 * width, 9/10 * height, switchSpentoImg.width, switchSpentoImg.height);
+switchAcceso = image(switchAccesoImg, 9/10 * width, 9/10 * height, switchAccesoImg.width/1000000*(width*height), switchAccesoImg.height/1000000*(width*height));
+switchSpento = image(switchSpentoImg, 9/10 * width, 9/10 * height, switchSpentoImg.width/1000000*(width*height), switchSpentoImg.height/1000000*(width*height));
   }
 
   function mouseClicked() {
 if (bumperAudio.isPlaying() == false) {
+  
 
     bumperAudio.play();
 }
