@@ -2,6 +2,9 @@
 var bumperAudio;
 var resizer;
 
+var sx;
+var sy;
+
 
 function preload() {
   bumperAudio = loadSound("./assets/TG1_bumper.mp3");
@@ -26,7 +29,7 @@ var switchAcceso;
 var opacity = 255;
 
 function draw() {
-imageMode(CENTER);
+
 
   volume = resizer.getLevel();
   volume = map(volume, 0, 1, 0, (width*height) / 1000) // To make measures responsive
@@ -70,20 +73,28 @@ noFill();
 pop();
 }
 
+push();
+imageMode(CENTER);
 var logo = image(tg1Img, width/2, height/2, tg1Img.width/50*(width*height) / 100000, tg1Img.height/50*(width*height) / 100000);
+pop();
 
 fill(0, 0, 0, opacity);
 rect(0, 0, width, height);
 
-switchAcceso = image(switchAccesoImg, 9/10 * width, 9/10 * height, switchAccesoImg.width/1000000*(width*height), switchAccesoImg.height/1000000*(width*height));
-switchSpento = image(switchSpentoImg, 9/10 * width, 9/10 * height, switchSpentoImg.width/1000000*(width*height), switchSpentoImg.height/1000000*(width*height));
+sx = 9/10 * width
+sy = 9/10 * height
+
+switchAcceso = image(switchAccesoImg, sx, sy, switchAccesoImg.width/1000000*(width*height), switchAccesoImg.height/1000000*(width*height));
+switchSpento = image(switchSpentoImg, sx, sy, switchSpentoImg.width/1000000*(width*height), switchSpentoImg.height/1000000*(width*height));
   }
 
   function mouseClicked() {
 if (bumperAudio.isPlaying() == false) {
-  
+  if (mouseX > sx && mouseX < sx + switchAccesoImg.width/1000000*(width*height)
+    && mouseY > sy && mouseY < sy + switchAccesoImg.height/1000000*(width*height)) {
 
     bumperAudio.play();
+}
 }
   }
 
